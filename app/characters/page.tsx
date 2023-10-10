@@ -37,6 +37,7 @@ const CharactersPage = () => {
 
   return (
     <div>
+      <h1 className={styles.title}>Rick and Morty</h1>
       <ul className={styles.list}>
         {characters.map((character) => (
           <li key={character.id}>
