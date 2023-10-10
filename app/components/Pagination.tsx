@@ -14,9 +14,14 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
 }) => {
   const mapPages = () => {
-    const result = [];
-    for (let i = 0; i < totalPages; i++) {
-      result.push(i + 1);
+    const result: (number | string)[] = [];
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === currentPage) result.push(i);
+      else if (i === 1) result.push(i);
+      else if (i === totalPages) result.push(i);
+      else if (i === currentPage - 1) result.push(i);
+      else if (i === currentPage + 1) result.push(i);
+      else if (result[result.length - 1] != "...") result.push("...");
     }
     return result;
   };
@@ -37,19 +42,27 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <ul className={styles.list}>
-      <li className={styles.listItem} onClick={handlePrev}>
+      <li className={styles.page} onClick={handlePrev}>
         &lt;
       </li>
-      {pages.map((page, idx) => (
-        <li
-          key={page}
-          className={styles.listItem}
-          onClick={() => onPageChange(page)}
-        >
-          {page}
-        </li>
-      ))}
-      <li className={styles.listItem} onClick={handleNext}>
+      {pages.map((page, idx) =>
+        page === "..." ? (
+          <li key={`${page}-${idx}`} className={styles.ellipsis}>
+            {page}
+          </li>
+        ) : (
+          <li
+            key={`${page}-${idx}`}
+            className={`${styles.page} ${
+              currentPage === +page ? styles.currentPage : ""
+            }`}
+            onClick={() => onPageChange(+page)}
+          >
+            {page}
+          </li>
+        )
+      )}
+      <li className={styles.page} onClick={handleNext}>
         &gt;
       </li>
     </ul>

@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import styles from "./page.module.css";
 
 interface Character {
+  id: number;
   name: string;
   image: string;
 }
@@ -42,7 +43,7 @@ const CharactersPage = () => {
     <div>
       <ul className={styles.list}>
         {characters.map((character) => (
-          <li key={character.name}>
+          <li key={character.id}>
             <CharacterCard name={character.name} image={character.image} />
           </li>
         ))}

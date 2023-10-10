@@ -6,17 +6,28 @@
   padding: 1rem;
 }
 
-.listItem {
+.page {
   width: 32px;
   height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(29, 153, 236);
-  border-radius: 2px;
+
   cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 
-.listItem:hover {
-  background-color: rgb(211, 211, 211);
+.page:hover {
+  border: 1px solid rgb(29, 153, 236);
+  border-radius: 5px;
+}
+
+.currentPage {
+  border: 1px solid rgb(29, 153, 236);
+  border-radius: 5px;
+  color: rgb(29, 153, 236);
+}
+
+.ellipsis {
+  color: rgb(0, 0, 0);
 }

@@ -5,3 +5,11 @@
   align-items: center;
   gap: 1rem;
 }
+
+.image {
+  border-radius: 5px;
+}
+
+.name {
+  color: rgb(0, 0, 0);
+}

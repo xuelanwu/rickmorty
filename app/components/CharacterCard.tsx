@@ -8,7 +8,7 @@ interface CharacterCardProps {
 const CharacterCard: React.FC<CharacterCardProps> = ({ name, image }) => {
   return (
     <div className={styles.card}>
-      <img src={image} alt={name}></img>
+      <img className={styles.image} src={image} alt={name}></img>
       <p className={styles.name}>{name}</p>
     </div>
   );
