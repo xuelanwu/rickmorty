@@ -1,5 +1,3 @@
-import Link from "@/node_modules/next/link";
-
 import CharactersPage from "./characters/page";
 
 export default function Home() {

@@ -1,37 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import { Character, getCharacters } from "../APIs/characters";
+
 import CharacterCard from "../components/CharacterCard";
 import Pagination from "../components/Pagination";
 
 import styles from "./page.module.css";
 
-interface Character {
-  id: number;
-  name: string;
-  image: string;
-}
-
 const CharactersPage = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
-    const fetchCharacters = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://rickandmortyapi.com/api/character/?page=${currentPage}`
-        );
-        const data = await response.json();
-        setCharacters(data.results);
-        setTotalPages(data.info.pages);
+        const result = await getCharacters(currentPage);
+        if (result !== undefined) {
+          const { characters, totalPages } = result;
+          setCharacters(characters);
+          setTotalPages(totalPages);
+        }
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchCharacters();
+    fetchData();
   }, [currentPage]);
 
   const handlePageChange = (newPage: number) => {
