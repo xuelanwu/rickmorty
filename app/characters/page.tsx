@@ -24,7 +24,6 @@ const CharactersPage = () => {
           `https://rickandmortyapi.com/api/character/?page=${currentPage}`
         );
         const data = await response.json();
-        console.log(data);
         setCharacters(data.results);
         setTotalPages(data.info.pages);
       } catch (error) {
